@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lumina-portfolio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lumina-portfolio
+  template:
+    metadata:
+      labels:
+        app: lumina-portfolio
+    spec:
+      containers:
+        - name: app
+          image: images.paas.redhat.com/pbusa/photo:latest
+          imagePullPolicy: Always
+          env:
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: lumina-portfolio-secrets
+                  key: admin-password
+          ports:
+            - containerPort: 8000
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          volumeMounts:
+            - name: uploads
+              mountPath: /app/backend/uploads
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: lumina-portfolio-uploads

@@ -1,0 +1,90 @@
+:root {
+  font-family: 'Inter', 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100%;
+  scroll-behavior: smooth;
+  --bg-gradient: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.25), transparent 45%), radial-gradient(circle at 90% 10%, rgba(236, 72, 153, 0.25), transparent 40%), radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.2), transparent 35%);
+}
+
+body {
+  background: rgb(var(--background));
+  background-image: var(--bg-gradient);
+  background-attachment: fixed;
+  color: rgb(var(--primary));
+  margin: 0;
+  font-feature-settings: 'ss01' on, 'ss03' on;
+}
+
+.glass-panel {
+  background: rgba(var(--surface), 0.92);
+  border: 1px solid rgba(var(--primary), 0.08);
+  box-shadow: 0 20px 40px rgba(15, 15, 15, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 1.5rem;
+}
+
+.rainbow-border {
+  position: relative;
+}
+
+.rainbow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #60a5fa, #a855f7, #ec4899, #f97316);
+  -webkit-mask:
+    linear-gradient(#000, #000) content-box,
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.aurora-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.aurora-wrap::after {
+  content: '';
+  position: absolute;
+  width: 40rem;
+  height: 40rem;
+  left: 50%;
+  top: 0;
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.15), transparent 55%);
+  filter: blur(60px);
+  transform: translate(-50%, -20%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.grid-fade {
+  background-image: linear-gradient(rgba(var(--primary), 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--primary), 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .floating {
+    animation: float 12s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -6px, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+

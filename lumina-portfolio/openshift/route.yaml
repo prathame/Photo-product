@@ -1,0 +1,46 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: lumina-portfolio
+  labels:
+    app: lumina-portfolio
+    app.kubernetes.io/instance: lumina-portfolio
+    paas.redhat.com/appcode: ITOS-008
+    shard: internal
+spec:
+  host: photo.apps.int.spoke.dev.us-east-1.aws.paas.redhat.com
+  to:
+    kind: Service
+    name: lumina-portfolio
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None
+
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: paas-canary
+  namespace: paas-validation--canary-int
+
+  labels:
+    app: paas-canary
+    app.kubernetes.io/instance: dev-osd-spoke-mgmt
+    paas.redhat.com/appcode: ITOS-008
+    shard: internal
+spec:
+  host: paas-canary.apps.int.spoke.dev.us-east-1.aws.paas.redhat.com
+  to:
+    kind: Service
+    name: paas-canary
+    weight: 100
+  port:
+    targetPort: 8443-tcp
+  tls:
+    termination: reencrypt
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None

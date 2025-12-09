@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: 'rgb(var(--background) / <alpha-value>)',
+              surface: 'rgb(var(--surface) / <alpha-value>)',
+              primary: 'rgb(var(--primary) / <alpha-value>)',
+              secondary: 'rgb(var(--secondary) / <alpha-value>)',
+              accent: 'rgb(var(--accent) / <alpha-value>)',
+            },
+            fontFamily: {
+              sans: ['Inter', 'Space Grotesk', 'sans-serif'],
+              display: ['Space Grotesk', 'Inter', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --background: 248 249 255;
+        --surface: 255 255 255;
+        --primary: 15 23 42;
+        --secondary: 100 116 139;
+        --accent: 99 102 241;
+      }
+
+      .dark {
+        --background: 6 8 15;
+        --surface: 16 20 31;
+        --primary: 248 250 252;
+        --secondary: 148 163 184;
+        --accent: 129 140 248;
+      }
+      
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgb(var(--surface));
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgb(var(--secondary) / 0.5);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgb(var(--secondary));
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.10.0",
+    "jszip": "https://aistudiocdn.com/jszip@^3.10.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
